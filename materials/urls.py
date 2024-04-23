@@ -8,9 +8,10 @@ from materials.apps import MaterialsConfig
 app_name = MaterialsConfig.name
 
 router = DefaultRouter()
-router.register(r'course', CourseViewSet, basename='lesson')
+router.register(r'course', CourseViewSet, basename='course')
 
 urlpatterns = [
+    # lessons
     path('lesson/', LessonListApiView.as_view(), name='lesson_list'),
     path('lesson/create/', LessonCreateApiView.as_view(), name='lesson_create'),
     path('lesson/<int:pk>/', LessonRetrieveApiView.as_view(), name='lesson_retrieve'),
