@@ -219,126 +219,108 @@
     "model": "auth.permission",
     "pk": 25,
     "fields": {
-      "name": "Can view all users",
-      "content_type": 6,
-      "codename": "view_all_users"
+      "name": "Can add Платеж",
+      "content_type": 7,
+      "codename": "add_payment"
     }
   },
   {
     "model": "auth.permission",
     "pk": 26,
     "fields": {
-      "name": "Can block users",
-      "content_type": 6,
-      "codename": "block_user"
+      "name": "Can change Платеж",
+      "content_type": 7,
+      "codename": "change_payment"
     }
   },
   {
     "model": "auth.permission",
     "pk": 27,
     "fields": {
-      "name": "Can add Курс",
+      "name": "Can delete Платеж",
       "content_type": 7,
-      "codename": "add_course"
+      "codename": "delete_payment"
     }
   },
   {
     "model": "auth.permission",
     "pk": 28,
     "fields": {
-      "name": "Can change Курс",
+      "name": "Can view Платеж",
       "content_type": 7,
-      "codename": "change_course"
+      "codename": "view_payment"
     }
   },
   {
     "model": "auth.permission",
     "pk": 29,
     "fields": {
-      "name": "Can delete Курс",
-      "content_type": 7,
-      "codename": "delete_course"
+      "name": "Can add Курс",
+      "content_type": 8,
+      "codename": "add_course"
     }
   },
   {
     "model": "auth.permission",
     "pk": 30,
     "fields": {
-      "name": "Can view Курс",
-      "content_type": 7,
-      "codename": "view_course"
+      "name": "Can change Курс",
+      "content_type": 8,
+      "codename": "change_course"
     }
   },
   {
     "model": "auth.permission",
     "pk": 31,
     "fields": {
-      "name": "Can add Урок",
+      "name": "Can delete Курс",
       "content_type": 8,
-      "codename": "add_lesson"
+      "codename": "delete_course"
     }
   },
   {
     "model": "auth.permission",
     "pk": 32,
     "fields": {
-      "name": "Can change Урок",
+      "name": "Can view Курс",
       "content_type": 8,
-      "codename": "change_lesson"
+      "codename": "view_course"
     }
   },
   {
     "model": "auth.permission",
     "pk": 33,
     "fields": {
-      "name": "Can delete Урок",
-      "content_type": 8,
-      "codename": "delete_lesson"
+      "name": "Can add Урок",
+      "content_type": 9,
+      "codename": "add_lesson"
     }
   },
   {
     "model": "auth.permission",
     "pk": 34,
     "fields": {
-      "name": "Can view Урок",
-      "content_type": 8,
-      "codename": "view_lesson"
+      "name": "Can change Урок",
+      "content_type": 9,
+      "codename": "change_lesson"
     }
   },
   {
     "model": "auth.permission",
     "pk": 35,
     "fields": {
-      "name": "Can add Платеж",
+      "name": "Can delete Урок",
       "content_type": 9,
-      "codename": "add_payment"
+      "codename": "delete_lesson"
     }
   },
   {
     "model": "auth.permission",
     "pk": 36,
     "fields": {
-      "name": "Can change Платеж",
+      "name": "Can view Урок",
       "content_type": 9,
-      "codename": "change_payment"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 37,
-    "fields": {
-      "name": "Can delete Платеж",
-      "content_type": 9,
-      "codename": "delete_payment"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 38,
-    "fields": {
-      "name": "Can view Платеж",
-      "content_type": 9,
-      "codename": "view_payment"
+      "codename": "view_lesson"
     }
   },
   {
@@ -393,8 +375,8 @@
     "model": "contenttypes.contenttype",
     "pk": 7,
     "fields": {
-      "app_label": "materials",
-      "model": "course"
+      "app_label": "users",
+      "model": "payment"
     }
   },
   {
@@ -402,46 +384,15 @@
     "pk": 8,
     "fields": {
       "app_label": "materials",
-      "model": "lesson"
+      "model": "course"
     }
   },
   {
     "model": "contenttypes.contenttype",
     "pk": 9,
     "fields": {
-      "app_label": "users",
-      "model": "payment"
-    }
-  },
-  {
-    "model": "materials.course",
-    "pk": 3,
-    "fields": {
-      "name": "OOP",
-      "image": "",
-      "description": null
-    }
-  },
-  {
-    "model": "materials.lesson",
-    "pk": 2,
-    "fields": {
-      "name": "django",
-      "description": null,
-      "image": "",
-      "video_url": null,
-      "course": 3
-    }
-  },
-  {
-    "model": "materials.lesson",
-    "pk": 3,
-    "fields": {
-      "name": "django_rest",
-      "description": null,
-      "image": "",
-      "video_url": null,
-      "course": null
+      "app_label": "materials",
+      "model": "lesson"
     }
   }
 ]

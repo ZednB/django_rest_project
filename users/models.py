@@ -32,8 +32,8 @@ class Payment(models.Model):
     ]
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
     payment_date = models.DateTimeField(verbose_name='Дата оплаты', **NULLABLE)
-    payed_course = models.ManyToManyField(Course, verbose_name='Оплаченный курс', **NULLABLE),
-    payed_lesson = models.ManyToManyField(Lesson, verbose_name='Оплаченный урок', **NULLABLE)
+    payed_course = models.ManyToManyField(Course, verbose_name='Оплаченный курс'),
+    payed_lesson = models.ManyToManyField(Lesson, verbose_name='Оплаченный урок')
     amount = models.PositiveIntegerField(verbose_name='Сумма оплаты')
     method = models.CharField(choices=CHOICES, max_length=15, verbose_name='Способ оплаты')
 
