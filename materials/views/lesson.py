@@ -1,4 +1,6 @@
 from rest_framework import generics
+
+from materials.paginators import LessonCoursePaginator
 from materials.serializers.lesson import LessonSerializer
 from materials.models import Lesson
 from users.permissions import IsModerStaff, IsOwnerStaff
@@ -9,6 +11,7 @@ class LessonListApiView(generics.ListAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = [IsAuthenticated]
+    pagination_class = LessonCoursePaginator
 
 
 class LessonCreateApiView(generics.CreateAPIView):
