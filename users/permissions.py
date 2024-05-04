@@ -9,7 +9,7 @@ class IsModerStaff(BasePermission):
 
 
 class IsOwnerStaff(BasePermission):
-    def has_permission(self, request, view, obj):
-        if obj.user == request.user:
+    def has_object_permission(self, request, view, obj):
+        if obj.owner == request.user:
             return True
         return False

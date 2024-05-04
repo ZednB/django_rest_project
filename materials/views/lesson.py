@@ -14,10 +14,10 @@ class LessonListApiView(generics.ListAPIView):
 class LessonCreateApiView(generics.CreateAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = [IsAuthenticated, IsOwnerStaff & ~IsOwnerStaff]
+    permission_classes = [IsAuthenticated, IsOwnerStaff & ~IsModerStaff]
 
     def perform_create(self, serializer):
-        user = serializer.save(user=self.request.user)
+        user = serializer.save(owner=self.request.user)
         user.save()
 
 
