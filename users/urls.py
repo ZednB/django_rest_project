@@ -1,7 +1,7 @@
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 from users.apps import UsersConfig
-from users.views.payment import PaymentViewSet
+from users.views.payment import PaymentViewSet, PaymentListApiView, PaymentCreateApiView
 from users.views.users import UserCreateApiView, UserListApiView, UserRetrieveApiView, UserUpdateApiView, \
     UserDestroyApiView
 from rest_framework_simplejwt.views import (
@@ -24,4 +24,7 @@ urlpatterns = [
     path('destroy/<int:pk>/', UserDestroyApiView.as_view(), name='destroy_user'),
     path('login/', TokenObtainPairView.as_view(permission_classes=(permissions.AllowAny,)), name='login_user'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
+    path('payment_list/', PaymentListApiView.as_view(), name='payment_list'),
+    path('payment_create/', PaymentCreateApiView.as_view(), name='payment_create'),
               ] + course_router.urls

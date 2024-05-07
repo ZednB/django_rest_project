@@ -1,4 +1,5 @@
 from rest_framework import generics
+from rest_framework.decorators import api_view
 
 from materials.paginators import LessonCoursePaginator
 from materials.serializers.lesson import LessonSerializer
@@ -8,6 +9,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 
 
 class LessonListApiView(generics.ListAPIView):
+    """Viewset for list"""
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = [AllowAny]
@@ -15,6 +17,7 @@ class LessonListApiView(generics.ListAPIView):
 
 
 class LessonCreateApiView(generics.CreateAPIView):
+    """Viewset for create"""
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = [AllowAny, IsOwnerStaff & ~IsModerStaff]
@@ -25,18 +28,21 @@ class LessonCreateApiView(generics.CreateAPIView):
 
 
 class LessonRetrieveApiView(generics.RetrieveAPIView):
+    """Viewset for retrieve"""
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = [IsAuthenticated, IsOwnerStaff | IsModerStaff]
 
 
 class LessonUpdateApiView(generics.UpdateAPIView):
+    """Viewset for update"""
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = [IsAuthenticated, IsOwnerStaff | IsModerStaff]
 
 
 class LessonDestroyApiView(generics.DestroyAPIView):
+    """Viewset for delete"""
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = [AllowAny, ~IsModerStaff | IsOwnerStaff]

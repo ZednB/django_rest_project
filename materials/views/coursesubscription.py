@@ -7,7 +7,7 @@ from materials.serializers.coursesubsription import CourseSubscriptionSerializer
 
 
 class CourseSubscriptionCreateView(APIView):
-
+    """Viewset for create"""
     def post(self, request):
         user = request.user
         course_id = request.data.get('course_id')
