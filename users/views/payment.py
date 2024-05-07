@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter
 from django_filters import rest_framework as filters
 from rest_framework.viewsets import ModelViewSet
@@ -22,6 +23,9 @@ class PaymentViewSet(ModelViewSet):
 class PaymentListApiView(generics.ListAPIView):
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializer
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filterset_fields = ('payed_course', 'payed_lesson', 'method')
+    ordering_fields = ('payment_date',)
 
 
 class PaymentCreateApiView(generics.CreateAPIView):
@@ -29,13 +33,7 @@ class PaymentCreateApiView(generics.CreateAPIView):
     serializer_class = PaymentSerializer
 
     def perform_create(self, serializer):
-        payment = serializer.save(user=self.request.user)
-        if payment.payed_course:
-            product = payment.payed_course.product_id
-        else:
-            product = payment.payed_lesson.product_id
-        price = stripe_create_price(payment.amount, product, payment.currency)
-        session, payment_url = stripe_create_course(price, description=payment.description)
-        payment.payment_session = session
-        payment.payment_url = payment_url
+        payment = serializer.save()
+        user = self.request.user
+        payment.user = user
         payment.save()

@@ -9,7 +9,7 @@ def stripe_create_course(name, description):
         name=name,
         description=description
     )
-    return course.id
+    return course.get('id')
 
 
 def stripe_create_lesson(name, description):
@@ -17,4 +17,4 @@ def stripe_create_lesson(name, description):
         name=name,
         description=description
     )
-    return lesson.id
+    return lesson.get('id')
