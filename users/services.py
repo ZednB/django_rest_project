@@ -12,6 +12,7 @@ def stripe_create_price(amount, product):
     )
     return price.id
 
+
 def create_session(price):
     session = stripe.checkout.Session.create(
         success_url="https://127.0.0.1:8000/success",
