@@ -35,7 +35,9 @@ class Payment(models.Model):
     payed_course = models.ManyToManyField(Course, verbose_name='Оплаченный курс')
     payed_lesson = models.ManyToManyField(Lesson, verbose_name='Оплаченный урок')
     amount = models.PositiveIntegerField(verbose_name='Сумма оплаты')
-    method = models.CharField(choices=CHOICES, max_length=15, verbose_name='Способ оплаты')
+    method = models.CharField(choices=CHOICES, max_length=50, verbose_name='Способ оплаты')
+    session_id = models.CharField(max_length=250, **NULLABLE, verbose_name="id сессии")
+    payment_link = models.URLField(max_length=500, **NULLABLE, verbose_name="Ссылка на оплату")
 
     def __str__(self):
         return f'{self.user} - {self.amount}, {self.method}'

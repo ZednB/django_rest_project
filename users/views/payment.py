@@ -8,7 +8,7 @@ from users.serializers.payment import PaymentSerializer
 from rest_framework import generics
 
 from materials.services import stripe_create_course
-from users.services import stripe_create_price
+from users.services import stripe_create_price, create_session, stripe_create_product
 
 
 class PaymentViewSet(ModelViewSet):
@@ -33,7 +33,16 @@ class PaymentCreateApiView(generics.CreateAPIView):
     serializer_class = PaymentSerializer
 
     def perform_create(self, serializer):
-        payment = serializer.save()
-        user = self.request.user
-        payment.user = user
+        payment = serializer.save(user=self.request.user, method='cash')
+        product = stripe_create_product(payment.payed_course)
+        price = stripe_create_price(product=product, amount=payment.amount)
+        session_id, session_url = create_session(price)
+        payment.session_id = session_id
+        payment.payment_link = session_url
         payment.save()
+
+    # def perform_create(self, serializer):
+    #     payment = serializer.save()
+    #     user = self.request.user
+    #     payment.user = user
+    #     payment.save()

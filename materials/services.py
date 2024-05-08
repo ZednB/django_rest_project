@@ -4,10 +4,9 @@ from django.conf import settings
 stripe.api_key = settings.STRIPE_API_KEY
 
 
-def stripe_create_course(name, description):
+def stripe_create_course(name):
     course = stripe.Product.create(
-        name=name,
-        description=description
+        name=name
     )
     return course.get('id')
 
