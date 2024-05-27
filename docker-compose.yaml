@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - /var/lib/postgresql/data/pgdata
+
+    env_file:
+      - .env
+
+  redis:
+    image: redis:latest
+    restart: on-failure
+    expose:
+      - '6379'
+
+  app:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+
+  celery:
+    build: .
+    tty: true
+    command: celery -A config worker -l INFO
+    restart: on-failure
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - db
+      - app
+    env_file:
+      - .env
+
+  celery-beat:
+    build: .
+    tty: true
+    command: celery -A config beat -l INFO -S django
+    restart: on-failure
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - db
+      - app
+    env_file:
+      - .env
+
+volumes:
+  postgres_data:
